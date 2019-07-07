@@ -43,6 +43,7 @@ Execute the following command:
 `sfdx mentz:publish -c "<comment>" -f <solution_filename> -u <username> -m`
 
 Parameters:
+
 | Name | Description |
 | --- | --- |
 | `<comment>` | a comment that raises any areas of concern to the mentor |
@@ -58,6 +59,7 @@ Execute the following command:
 `sfdx mentz:publish -c "<comment>" -f <solution_filename> -u <username>`
 
 Parameters:
+
 | Name | Description |
 | --- | --- |
 | `<comment>` | a comment that raises any areas of concern to the mentor |
