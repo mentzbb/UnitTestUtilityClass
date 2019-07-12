@@ -15,11 +15,11 @@ public with sharing class OpportunityUtils
             }
             else if (opp.Amount>50000)
             {
-                opp.Name+='Medium';
+                opp.Name+=' Medium';
             }
             else 
             {
-                opp.Name='Small';
+                opp.Name+=' Small';
             }
         }
 
@@ -27,16 +27,17 @@ public with sharing class OpportunityUtils
     }
 
     // this method posts to the supplied chatter group if the opportunity close
-    // date is less than 10 days away, and 
-    public void postNearTermOpportunityToChatter(Opportunity opp, CollaborationGroup grp, Integer days)
+    // date is less than 10 days away
+    public void postNearTermOpportunityToChatter(Id oppId, CollaborationGroup grp, Integer days)
     {
+        Opportunity opp=[select id, Name, CloseDate from Opportunity where Id=:oppId];
+
         Date nearDate=System.today().addDays(days);
 
         if (opp.CloseDate<nearDate)
         {
             FeedItem item=new FeedItem(Body='Opportunity ' + opp.Name + ' closes in less than ' + days + ' days',
                                     ParentId=grp.Id,
-                                    RelatedRecordId=opp.Id,
                                     Type='ContentPost');
 
             insert item;
